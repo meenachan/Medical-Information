@@ -1,0 +1,92 @@
+
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 40%;
+      border-radius: 5px;
+      margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+
+    }
+    
+    .container {
+      padding: 2px 16px;
+    }
+    </style>
+{% extends 'layout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile Page</h2>
+<div>
+    <p>Your account details are below:</p>
+    <!-- <table>
+        <tr>
+            <td>Doctor_ID:</td>
+            <td>{{ session['Doc_id'] }}</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>{{ session['Name'] }}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{{ session['email'] }}</td>
+        </tr> 
+    </table>
+    
+</div> -->
+<div class="card">
+    <div class="container">
+            <center>
+            <img src="{{url_for('static', filename='doc.png')}}" alt="Avatar" class="container" width="200px" >
+      <h2><b>{{ session['Name']}}</b></h2> </center>
+      <table>
+        <tr>
+            <td>Doctor_ID:</td>
+            <td>{{ session['Doc_id'] }}</td>
+        </tr>
+        
+        <tr>
+            <td>Specialization :</td>
+            <td>{{ session['Specialization']}}</td>
+        </tr> 
+
+        <tr>
+            <td>Experience :</td>
+            <td>{{ session['Experience']}}</td>
+        </tr> 
+
+        <tr>
+            <td>Clinic :</td>
+            <td>{{ session['Clinic'] }}</td>
+        </tr> 
+
+
+        <tr>
+            <td>Qualification :</td>
+            <td>{{ session['Qualification'] }}</td>
+
+        </tr> 
+
+        <tr>
+            <td>Contact :</td>
+            <td>{{ session['Contact'] }}</td>
+
+        </tr> 
+    </table>
+      <p><button><a href="dupdate.html">Update</a></button></p>
+    </div>
+  </div>
+{% endblock %}

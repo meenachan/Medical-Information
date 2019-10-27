@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<style>
+    .card {
+     
+      transition: 0.3s;
+      width: 40%;
+      border-radius: 5px;
+      align-self: center;
+      margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+    }
+    
+    .container {
+      padding: 2px 16px;
+  
+    }
+    </style>
+{% extends 'layout.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<!-- <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-  
+        scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font- awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/index.css">
+    </head>
+    <body> style="margin:auto;max-width:600px -->
+      <center>
+         <h1>Search</h1><br>
+        <form  method="POST" style="margin:auto;max-width:600px">
+
+         <input type="text" placeholder="Search by patient id" name="Pat_id">
+
+        </center>
+
+            <!-- <table id="example" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th>Patient_id</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Insurance_id</th>
+                        <th>Medical Info</th>
+                        <th>Doctor_id</th>
+                        <th>Passwd</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for row in data %}
+                      <tr align="center">
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                        <td>{{ row[6] }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody> -->
+                    <br>
+                    <br>
+                   
+                    {% for row in data %}
+                    <div class="container">
+                    <div class="card">
+                  
+
+                   <table>
+                      
+                    <tr>
+                      <td>Patient_id:</td>
+                      <td>{{ row[0] }}</td>
+                  </tr>
+                  
+                  <tr>
+                      <td>Name :</td>
+                      <td>{{row[1]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>Contact :</td>
+                      <td>{{row[2]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>Insurance_id :</td>
+                      <td>{{ row[3] }}</td>
+                  </tr> 
+          
+          
+                  <tr>
+                      <td>Medical Info :</td>
+                      <td>{{ row[4] }}</td>
+          
+                  </tr> 
+          
+                  <tr>
+                      <td>Doctor_id :</td>
+                      <td>{{ row[5] }}</td>
+          
+                  </tr>    
+                   
+                  </table>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+        <!-- <table>
+        <center>
+        {% for row in data %}
+            <tr>
+                <td> {{ row[0] }} 
+                     {{ row[1] }}
+                     {{ row[2] }}
+                     {{ row[3] }}
+                     {{ row[4] }}
+                     {{ row[5] }}
+                     {{ row[6] }}
+                </td>
+                </br>
+            </tr>
+        {% endfor %}
+        </center>
+        </table> -->
+    <!-- </body>
+</html> -->
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='med.css') }}">
+		
+	</head>
+	<body class="loggedin">
+		<nav class="navtop">
+			<div>
+				<h1>MIA</h1>
+                <a href="{{ url_for('ehome') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('eprofile') }}"><i class="fas fa-user-circle"></i>Profile</a>
+				<a href="{{ url_for('esearch') }}"><i class="fas fa-search"></i>Search</a>
+                <a href="{{ url_for('stock') }}"><i class="fas fa-search"></i>Stock</a>
+				 <a href="{{ url_for('inventory') }}"><i class="fas fa-search"></i>Inventory</a>
+                <a href="{{ url_for('elogout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+
+
+             </div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

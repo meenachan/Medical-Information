@@ -1,0 +1,59 @@
+
+<style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 40%;
+      border-radius: 5px;
+      margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+
+    }
+    
+    .container {
+      padding: 2px 16px;
+    }
+    </style>
+{% extends 'elayout.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h2>Profile Page</h2>
+<div>
+    <p>Your account details are below:</p>
+   
+<div class="card">
+    <div class="container">
+            <center>
+            <img src="{{url_for('static', filename='e.png')}}" alt="Avatar" class="container" width="200px" >
+      <h2><b>{{ session['Name']}}</b></h2> </center>
+      <table>
+        <tr>
+            <td>Licence:</td>
+            <td>{{ session['licence'] }}</td>
+        </tr>
+        
+        <tr>
+            <td>Address :</td>
+            <td>{{ session['Address']}}</td>
+        </tr> 
+
+        <tr>
+            <td>owner :</td>
+            <td>{{ session['owner']}}</td>
+        </tr> 
+    </table>
+      <p><button><a href="eupdate.html">Update</a></button></p>
+    </div>
+  </div>
+{% endblock %}

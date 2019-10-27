@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<style>
+    .card {
+     
+      transition: 0.3s;
+      width: 40%;
+      border-radius: 5px;
+      align-self: center;
+      margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+    }
+    
+    .container {
+      padding: 2px 16px;
+  
+    }
+    </style>
+{% extends 'playout.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+      <center>
+         <h1>Search</h1>
+         <br>
+        <form  method="POST" style="margin:auto;max-width:600px">
+
+         <input type="text" placeholder="Search by Specialization" name="Specialization">
+
+        </center>
+                    <br>
+                    <br>
+                   
+                    {% for row in data %}
+                    <div class="container">
+                    <div class="card">
+                  
+
+                   <table>
+                  
+                  <tr>
+                      <td>Name :</td>
+                      <td>{{row[1]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>Specialization :</td>
+                      <td>{{row[2]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>Experience :</td>
+                      <td>{{ row[3] }}</td>
+                  </tr> 
+          
+          
+                  <tr>
+                      <td>Clinic:</td>
+                      <td>{{ row[4] }}</td>
+          
+                  </tr> 
+          
+                  <tr>
+                      <td>Qualification :</td>
+                      <td>{{ row[5] }}</td>
+          
+                  </tr>    
+
+                   <tr>
+                      <td>Contact :</td>
+                      <td>{{ row[6] }}</td>
+          
+                  </tr>    
+                   <tr>
+                   
+                   </tr>
+                  </table>
+                  <button type="submit"><a href="{{ url_for('uappt') }}">Contact</a></button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+        <!-- <table>
+        <center>
+        {% for row in data %}
+            <tr>
+                <td> {{ row[0] }} 
+                     {{ row[1] }}
+                     {{ row[2] }}
+                     {{ row[3] }}
+                     {{ row[4] }}
+                     {{ row[5] }}
+                     {{ row[6] }}
+                </td>
+                </br>
+            </tr>
+        {% endfor %}
+        </center>
+        </table> -->
+    <!-- </body>
+</html> -->
+{% endblock %}

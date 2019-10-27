@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>mysql> create table My1( fname varchar(20), lname varchar(20), con varchar(20));
+
+    <title>Database table</title>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  </head>
+  <body>
+    <h1>User Names</h1>
+    <table id="example" style="width:100%">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in data %}
+        <tr align="center">
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <!-- <tfoot>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tr>
+      </tfoot> -->
+    </table>
+    <!-- <script>
+      //   $(function() {
+      //     $.ajax({
+      //       url: "/getUsers",
+      //       type: "GET",
+      //       success: function(res) {
+      //         data = res;
+      //       },
+      //       error: function(error) {
+      //         console.log(error);
+      //       }
+      //     });
+      //   });
+      function setupData() {
+        $(document).ready(function() {
+          $("#example").DataTable({
+            ajax: {
+              // "url": "static/objects2.txt", // This works for the static file
+              url: "/getUsers", // This doesn't work
+              dataType: "json",
+              dataSrc: "data",
+              contentType: "application/json"
+            },
+            columns: [{ data: "FirstName" }, { data: "LastName" }]
+          });
+        });
+      }
+      $(window).on("load", setupData);
+    </script> -->
+  </body>
+</html>

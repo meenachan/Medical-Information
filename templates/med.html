@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}Medicine{% endblock %}
+
+
+{% block content %}
+<h2>Medicine</h2>
+<p>Insert correct Medicine for relevent disease , to help patients and medical businessman .</p>
+
+<div class="container">
+  <form  method="POST">  
+  <div class="row">
+    <div class="col-25">
+      <label for="Drug_name">Drug Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="Drug_name" placeholder="Drug_name">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Disease</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="Disease" placeholder="Disease">
+    </div>
+  </div>
+  <div class="row">
+  <div class="col-25">
+        <label for="fname">Shop-ID</label></div>
+        <div class="col-75">
+    <input type="text" id="lname" name="shop_id" placeholder="shop_id">
+  </div>
+</div>
+<div class="row">
+  <div class="col-25">
+    <label for="fname">Company Name</label>
+  </div>
+    <div class="col-75">
+       
+    <input type="text" id="lname" name="company" placeholder="company">
+  </div>
+</div>
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+  
+  {% with messages = get_flashed_messages() %}  
+         {% if messages %}  
+               {% for message in messages %}  
+                    <p>{{ message }}</p>  
+               {% endfor %}  
+         {% endif %}  
+      {% endwith %}  
+
+</form>
+    
+
+  {% endblock %}

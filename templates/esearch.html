@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<style>
+    .card {
+     
+      transition: 0.3s;
+      width: 40%;
+      border-radius: 5px;
+      align-self: center;
+      margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px;
+    }
+    
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    img {
+      border-radius: 5px 5px 0 0;
+    }
+    
+    .container {
+      padding: 2px 16px;
+  
+    }
+    </style>
+{% extends 'elayout.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+      <center>
+         <h1>Search</h1><br>
+        <form  method="POST" style="margin:auto;max-width:600px">
+
+         <input type="text" placeholder="Search by Disease" name="Disease" required>
+
+        </center>
+        {% with messages = get_flashed_messages() %}  
+         {% if messages %}  
+               {% for message in messages %}  
+                    <p>{{ message }}</p>  
+               {% endfor %}  
+         {% endif %}  
+      {% endwith %}  
+
+                    <br>
+                    <br>
+                   
+                    {% for row in data %}
+                    <div class="container">
+                    <div class="card">
+                  
+
+                   <table>
+                      
+                    <tr>
+                      <td>Drug name:</td>
+                      <td>{{ row[0] }}</td>
+                  </tr>
+                  
+                  <tr>
+                      <td>Disease :</td>
+                      <td>{{row[1]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>Shop_id:</td>
+                      <td>{{row[2]}}</td>
+                  </tr> 
+          
+                  <tr>
+                      <td>company:</td>
+                      <td>{{ row[3] }}</td>
+                  </tr> 
+          
+          
+                   
+                  </table>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock %}
