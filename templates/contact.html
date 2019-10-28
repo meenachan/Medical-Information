@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>	
+
+.box:hover {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        
+ }
+.container{
+    padding: 10px;
+}      
+	 
+	 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Contact</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" />
+<!-- <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
+<link rel="stylesheet" href="/home/cmp/Desktop/MedIA/static/styles/default.css">
+<link rel="stylesheet" href="/home/cmp/Desktop/MedIA/static/styles/fonts.css">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/default.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<!-- <link href="default_ie6.css" rel="stylesheet" type="text/css" /> -->
+
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="{{ url_for('index') }}">MIA</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="{{ url_for('index') }}" accesskey="1" title="Homepage">Homepage</a></li>
+				<li><a href="{{ url_for('about') }}" accesskey="3" title="About Us">About Us</a></li>
+				<li class="current_page_item"><a href="#" accesskey="4" title="Contact">Contact Us</a></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+    <div id="banner">
+		<div class="container">
+			<div class="title">
+				<h2>Contact Us</h2>
+				<span class="byline">Get in touch with us to get your own M.I.A</span> </div>
+		
+		</div>
+	</div>
+	<div id="extra" class="container">
+		<div class="title">
+			
+            <div id="three-column">
+			<div class="boxA">
+				<div class="box"> <span class="fa fa-envelope" aria-hidden="true"></span>
+					<p>EMAIL</p>
+					<p> <a href = "mailto:medicalassist@gmail.com"> <u>medicalassist@gmail.com <u> </a></p>
+
+				</div>
+			</div>
+			<div class="boxB">
+				<div class="box"> <span class="fa fa-phone" aria-hidden="true"></span>
+					<p>PHONE</p>
+					<p> <u>+918209806352<u> </p>
+				</div>
+			</div>
+			<div class="boxC">
+				<div class="box"> <span class="fa  fa-instagram" aria-hidden="true"></span>
+					<p>FOLLOW US</p>
+					 <p><a href="https://www.instagram.com/meena.chan7/?hl=en">INSTAGRAM</a>
+		</p>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+
+    
+    <div class="container"> 
+<center>  &copy; MIA. All rights reserved. </center>
+</div>
+</div>
+</footer>
+</body>
+</html>

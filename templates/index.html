@@ -29,13 +29,13 @@
 	<div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="#">MIA</a></h1>
+			<h1><a href="{{ url_for('index') }}">MIA</a></h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
-				<li><a href="#" accesskey="3" title="">About Us</a></li>
-				<li><a href="#" accesskey="4" title="">Contact Us</a></li>
+				<li class="current_page_item"><a href="{{ url_for('index') }}" accesskey="1" title="Homepage">Homepage</a></li>
+				<li><a href="{{ url_for('about') }}" accesskey="3" title="About Us">About Us</a></li>
+				<li><a href="{{ url_for('contact') }}" accesskey="4" title="Contact">Contact Us</a></li>
 			</ul>
 		</div>
 	</div>

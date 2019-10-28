@@ -18,6 +18,14 @@ mysql = MySQL(app)
 def index():
     return render_template('index.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('aboutus.html')    
 
 #doctor sign up
 @app.route('/dsign.html',methods=['GET', 'POST'])
@@ -58,15 +66,13 @@ def psign():
         Contact = details['Contact']
         Insurance_id = details['Insurance_id']
         Medical_info = details['Medical_info']
-        #Clinic = details['Clinic']
         Doc_Id = details['Doc_Id']
-        #Contact = details['Contact']
         cur = mysql.connection.cursor()
         try:
             cur.execute("INSERT INTO Patient(Pat_id, Name, Contact, Insurance_id, Medical_info, Doc_Id, passwd) VALUES (%s,  %s , %s , %s , %s , %s, %s)", (Pat_id, Name, Contact, Insurance_id, Medical_info, Doc_Id, passwd))
             mysql.connection.commit()
         except Exception as e:
-            flash("Error !! ")
+            flash("Error !! Try again")
             return render_template('psign.html', msg=e)    
         cur.close()
         return redirect(url_for('logpat'))
@@ -104,26 +110,30 @@ def signup():
         Doc_id = details['doc_id']
         Passwd = details['passwd']
         cur = mysql.connection.cursor()
-        cur.execute("SELECT * FROM Doctors where Doc_id = %s AND Passwd = %s", (Doc_id, Passwd)) 
-        username = cur.fetchone()
-        if username:
-            session['loggedin'] = True
-            session['Doc_id'] = username[0]
-            session['Name'] = username[1]
-            session['Specialization'] = username[2]
-            session['Experience'] = username[3]
-            session['Clinic'] = username[4]
-            session['Qualification'] = username[5]
-            session['Contact'] = username[6]
-            session['Patient_id'] = username[7]
+        try:
+            cur.execute("SELECT * FROM Doctors where Doc_id = %s AND Passwd = %s", (Doc_id, Passwd)) 
+            username = cur.fetchone()
+            if username:
+                session['loggedin'] = True
+                session['Doc_id'] = username[0]
+                session['Name'] = username[1]
+                session['Specialization'] = username[2]
+                session['Experience'] = username[3]
+                session['Clinic'] = username[4]
+                session['Qualification'] = username[5]
+                session['Contact'] = username[6]
+                session['Patient_id'] = username[7]
 
             # Redirect to home page
-            return redirect(url_for('home'))
-        else:
-            # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
+                return redirect(url_for('home'))
+            else :
+                flash("Incorrect ID or password! Try Again")        
+        except Exception as e:
+            flash("Incorrect ID or password! Try Again")
+             
+            return render_template('signup.html',msg=e)
     # Show the login form with message (if any)
-    return render_template('signup.html', msg=msg)
+    return render_template('signup.html',msg= msg)
        
        
        
@@ -157,7 +167,8 @@ def logpat():
                 session['passwd'] = username[6]
              # Redirect to home page
                 return redirect(url_for('phome'))
-            
+            else :
+                flash("Try Again ! Invalid username or password")
             mysql.connection.commit()    
         except Exception as e:
             flash("Error!!!")
@@ -189,6 +200,8 @@ def logenter():
                 session['passwd'] = username[4]
              # Redirect to home page
                 return redirect(url_for('ehome'))
+            else :
+                flash("Try Again ! Invalid username or password")
             mysql.connection.commit()    
        
         except Exception as e:
@@ -204,51 +217,7 @@ def logenter():
 # def display():
 #     return render_template('display.html')
 
-@app.route('/udisplay.html')
-def pread( pat_id , passwd):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM Patient WHERE Pat_id = %s and passwd = %s)",(pat_id,passwd))
-    names = cur.fetchall()
-    names_dict = []
-    for name in names:
-        name_dict = {
-            'Name': name[0],
-            'LastName': name[1]}
-        names_dict.append(name_dict)
-    data = jsonify(names_dict)
-    return render_template('display.html', data=names)
 
-
-@app.route('/ddisplay.html')
-def dread( doc_id , passwd):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM Doctors WHERE Doc_id = %s and Passwd = %s)", (doc_id,passwd))
-    names = cur.fetchall()
-    names_dict = []
-    for name in names:
-        name_dict = {
-            'Doc_id': name[0],
-            'Name': name[1]}
-        names_dict.append(name_dict)
-    data = jsonify(names_dict)
-    return render_template('ddisplay.html', data=names)
-
-
-
-
-@app.route('/edisplay.html')
-def eread( lic , passwd):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM Retailer WHERE licence = %s and passwd = %s)",(lic,passwd))
-    names = cur.fetchall()
-    names_dict = []
-    for name in names:
-        name_dict = {
-            'Licence': name[0],
-            'Name': name[1]}
-        names_dict.append(name_dict)
-    data = jsonify(names_dict)
-    return render_template('edisplay.html', data=names)
 
 @app.route('/signup/home')
 def home():
@@ -405,7 +374,7 @@ def plogout():
    session.pop('Pat_id', None)
    session.pop('Name', None)
    # Redirect to login page
-   return redirect(url_for('plogpat'))
+   return redirect(url_for('logpat'))
 
 @app.route('/logpat/pupdate.html', methods=['GET', 'POST'])
 def pupdate():

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>	
+
+.box:hover {
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        
+ }
+.container{
+    padding: 10px;
+}      
+
+img{
+    border-radius: 50%;
+}
+
+	 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>About Us</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" />
+<!-- <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
+<link rel="stylesheet" href="/home/cmp/Desktop/MedIA/static/styles/default.css">
+<link rel="stylesheet" href="/home/cmp/Desktop/MedIA/static/styles/fonts.css">
+<link rel="stylesheet" href="{{url_for('static', filename='styles/default.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<!-- <link href="default_ie6.css" rel="stylesheet" type="text/css" /> -->
+
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="{{ url_for('index') }}">MIA</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="{{ url_for('index') }}" accesskey="1" title="Homepage">Homepage</a></li>
+				<li class="current_page_item"><a href="#" accesskey="3" title="About Us">About Us</a></li>
+				<li><a href="{{ url_for('contact') }}" accesskey="4" title="Contact">Contact Us</a></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+
+    <div id="banner">
+		<div class="container">
+			<div class="title">
+				<h2>OUR MISSION</h2>
+				<span class="byline">TO PROVIDE A SINGLE PLATFORM FOR MULTIPLE MEDICAL SOLUTIONS.</span> 
+                </div>
+		
+		</div>
+</div>
+
+    <div id="extra" class="container">
+		<div class="title">
+			<h2>MEET ME!</h2>
+            <span class="byline"> Hi there! I am Meenakshi </span>
+            </div>
+            <br>
+            <br>
+		 <p><center><img src="{{ url_for('static', filename='me.png') }}"  width="150" height="150"></p>
+         </center>
+		 <p>
+        
+         <i><center> <q>
+      No one should have to choose between medicine and other necessities. 
+         No one should have to use the emergency room every time a child gets sick. 
+         And no one should have to live in constant fear that a medical problem will become a financial crisis.
+         </q>
+		 </center>
+		 </i>
+         
+         </p>
+         <br>
+         <div id="three-column">
+			<div class="boxA">
+				<div class="box"> <span class="fa fa-code" aria-hidden="true"></span>
+					<p>Education</p>
+					<p>I am an aspiring Computer Science engineer and  a passionate graphic designer . I went to school to learn about web design and writing code. But I am self-taught in Comic Arts.
+            I blend my professional knowledge with my passion to make the internet a beautiful place.
+                            One website at a time.</p>
+				</div>
+			</div>
+			<div class="boxB">
+				<div class="box"> <span class="fa fa-briefcase" aria-hidden="true"></span>
+					<p>Business</p>
+                    <p>M.I.A started to provide a single platform of interaction for three major sections of medical industory.
+                    M.I.A is a virtual medical assistant dedicated towards  three prime sectors of medicine field and used to manage their respective data and 
+                    provide suitable information after analyzing the data.
+                     </p>
+					
+				</div>
+			</div>
+
+			<div class="boxC">
+				<div class="box"> <span class="fa fa-heart" aria-hidden="true"></span>
+					<i class="fa fa-handshake-o" aria-hidden="true"></i>
+                    <p>Join Me !</p>
+					<p>"Alone we can do so little, together we can do so much."</p>
+					<p> ~Helen Keller </p>
+					<p>
+				     So	Join our M.I.A community and be one of  many awesome medical enthusiast !</p>
+					 <p><a href="{{ url_for('index') }}">Yes,Sign Me Up!</a><p>
+				</div>
+			</div>
+		</div>
+	</div>
+<hr>
+    <div>
+<center>	<p id="copyright" >  &copy; MIA. All rights reserved.</p> </center>
+
+</div>
+</body>
+</html>

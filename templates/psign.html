@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends 'signlayout.html' %}
+{% block title %} Sign Up {% endblock %}
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
@@ -71,26 +72,27 @@ button:hover {
   }
 }
 </style>
-<body>
 
-<form method= "POST" style="border:1px solid #ccc">
-  <div class="container">
+{% block content %}
+<div class="container">
+  <form method= "POST">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
     <label for="Pat_id"><b>Patient ID</b></label>
     <input type="text" placeholder="Enter Patient ID" name="Pat_id" required>
-
+<br>
     <label for="passwd"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="passwd" required>
+    <br>
 
     <label for="Name"><b>Name</b></label>
     <input type="text" placeholder="Enter Name" name="Name" required>
-    
+    <br>
     <label for="Contact"><b>Contact</b></label>
     <input type="number" placeholder="Enter Contact" name = "Contact" required>
-       
+       <br>
     <label for="Insurance_id"><b>Insurance ID</b></label>
     <input type="text" placeholder="Insurance ID" name = "Insurance_id" required>
      <br/>
@@ -105,7 +107,7 @@ button:hover {
 
     <!-- <label for="con"><b>Contact</b></label>
     <input type="number"  placeholder="Enter Contact number" name = "Contact" required> -->
-
+<p style="color:red;">
             {% with messages = get_flashed_messages() %}  
          {% if messages %}  
                {% for message in messages %}  
@@ -113,15 +115,14 @@ button:hover {
                {% endfor %}  
          {% endif %}  
       {% endwith %}  
-
+</p>
            
     <p>ALready have an account ? Click here <a href="logpat.html" style="color:dodgerblue">Log In</a>.</p>
 
     <div class="clearfix">
        <button type="submit" class="signupbtn">Sign Up</button>
     </div>
-  </div>
+ 
 </form>
-
-</body>
-</html>
+ </div>
+{% endblock %}

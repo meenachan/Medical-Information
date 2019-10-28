@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends 'signlayout.html' %}
+{% block title %} Sign Up {% endblock %}
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
@@ -71,52 +72,86 @@ button:hover {
   }
 }
 </style>
-<body>
 
-<form method= "POST" style="border:1px solid #ccc">
+{% block content %}
+
   <div class="container">
+  <form method= "POST">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
 
+    
     <label for="doc_id"><b>Doctor ID</b></label>
+ 
     <input type="text" placeholder="Enter Doctor ID" name="Doc_id" required>
-
+   
+    
+    
     <label for="passwd"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="Passwd" required>
+ 
+    <input type="password" placeholder="Enter Password" name="Passwd" width="10px" required>
+    
 
+   <br>
+    
     <label for="Name"><b>Name</b></label>
+  
     <input type="text" placeholder="Enter Name" name="Name" required>
+   
+
     
     <label for="spec"><b>Specialization</b></label>
-    <input type="text" placeholder="Enter Specialization" name = "Specialization" required>
-       <br>
-    <label for="exp"><b>Experience</b></label>
     
+    <input type="text" placeholder="Enter Specialization" name = "Specialization" required>
+      
+
+      
+    <label for="exp"><b>Experience</b></label>
+
     <input type="number" placeholder="Experience" name = "Experience" min="0" required>
-     <br>
-     <br>
-     <label for="edu"><b>Qualification</b></label>
-    <input type="text" placeholder="Enter Education" name = "Qualification" required>
-
-    <label for="clinic"><b>Clinic</b></label>
-    <input type="text" placeholder="Enter Clinic" name = "Clinic" required>
      
+
+   <br>
+     <label for="edu"><b>Qualification</b></label>
+     
+    <input type="text" placeholder="Enter Education" name = "Qualification" required>
+    
+
+   
+    <label for="clinic"><b>Clinic</b></label>
+  
+    <input type="text" placeholder="Enter Clinic" name = "Clinic" required>
+  
     <label for="pat_id"><b>Patient ID</b></label>
+  
     <input type="text" placeholder="Enter Patient ID" name = "Patient_id" required>
-
+    
     <label for="con"><b>Contact</b></label>
+     
+    
+    <input type="number" placeholder="Enter Contact number" name = "Contact" maxlength="11" size="11" required>
+      <br>
 
-    <input type="number"  placeholder="Enter Contact number" name = "Contact" maxlength="11" size="11" required>
+     <p style="color:red;">    
+  {% with messages = get_flashed_messages() %}  
+         {% if messages %}  
+               {% for message in messages %}  
+                    <div class="alert">
+                    <p>{{ message }}</p> 
+                     </div> 
+               {% endfor %}  
+         {% endif %}  
+      {% endwith %}  
+      </p>
 
-           
     <p> Already have an account ? Click Here<a href="signup.html" style="color:dodgerblue">Log In</a>.</p>
 
     <div class="clearfix">
        <button type="submit" class="signupbtn">Sign Up</button>
     </div>
-  </div>
+  
 </form>
+</div>
 
-</body>
-</html>
+{% endblock %}

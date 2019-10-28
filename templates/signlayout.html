@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title> {% block title %} {% endblock %} </title>
+<style>	
+
+	 </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MIA</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='med.css') }}">
+
+<!-- <link href="default_ie6.css" rel="stylesheet" type="text/css" /> -->
+
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			
+		</div>
+		<nav class="navtop">
+			<div>
+				<h1><a href={{ url_for('index') }}>MIA</a></h1>
+                <a href="{{ url_for('index') }}"><i class="fas fa-home"></i>Home</a>
+				<a href="{{ url_for('index') }}"><i class="fas fa-user-circle"></i>About Us</a>
+				<a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Contact Us</a>
+             </div>
+		</nav>
+    <div class="content">
+			{% block content %} {% endblock %}
+		</div>
+
+        </body>
+</html>
