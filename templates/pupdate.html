@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends 'playout.html' %}
+
+{% block title %}Update Profile{% endblock %}
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 *{
@@ -72,7 +74,8 @@ button:hover {
   }
 }
 </style>
-<body>
+
+{% block content %}
 
 <form method= "POST" style="border:1px solid #ccc">
   <div class="container">
@@ -81,22 +84,22 @@ button:hover {
     <hr>
 
     <label for="Name"><b>Name</b></label>
-    <input type="text" placeholder="Enter Name" name="Name" required>
+    <input type="text" placeholder="Enter Name" name="Name" value="{{ session['Name']}}" required>
     
     <label for="spec"><b>Medical Information</b></label>
-    <input type="text" placeholder="Enter Medical Information" name = "Medical_info" required>
+    <input type="text" placeholder="Enter Medical Information" name = "Medical_info"  value="{{ session['Medical_info']}}" required>
        <br>
     <label for="exp"><b>Insurance ID</b></label>
     
-    <input type="number" placeholder="Insurance_id" name = "Insurance_id" min="0" required>
+    <input type="number" placeholder="Insurance_id" name = "Insurance_id" value="{{ session['Insurance_id']}}" min="0" required>
      <br>
      <br>
      <label for="edu"><b>Doctor ID</b></label>
-    <input type="text" placeholder="Doctor ID" name = "Doc_id" required>
+    <input type="text" placeholder="Doctor ID" name = "Doc_id" value="{{ session['Doc_id']}}" required>
   
 
     <label for="con"><b>Contact</b></label>
-    <input type="number"  placeholder="Enter Contact number" name = "Contact" maxlength="11" size="11" required>
+    <input type="number"  placeholder="Enter Contact number" name = "Contact" value="{{ session['Contact']}}"  maxlength="11" size="11" required>
 
       {% with messages = get_flashed_messages() %}  
          {% if messages %}  
@@ -113,6 +116,6 @@ button:hover {
    
 
 </form>
+{% endblock %}
 
-</body>
-</html>
+

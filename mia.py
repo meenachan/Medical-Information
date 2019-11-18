@@ -136,15 +136,8 @@ def signup():
     return render_template('signup.html',msg= msg)
        
        
-       
-    #     # if username:
-    #     #      dread(Doc_id,Passwd)
-    #     # else:
-    #     #     print('error')
-    #     mysql.connection.commit()
-    #     cur.close()    
-    # return render_template('signup.html')
-#patient
+
+#patient log in
 @app.route('/logpat.html', methods=['GET', 'POST'])
 def logpat():
     msg=' '
@@ -179,7 +172,7 @@ def logpat():
     return render_template('logpat.html')
 
 
-#shop
+#shop log in
 @app.route('/logenter.html', methods=['GET', 'POST'])
 def logenter():
     msg=''
@@ -212,12 +205,7 @@ def logenter():
     return render_template('logenter.html')
 
 
-#
-# @app.route('/showUsers')
-# def display():
-#     return render_template('display.html')
-
-
+#doctors home
 
 @app.route('/signup/home')
 def home():
@@ -335,7 +323,10 @@ def appt():
             flash("Try again!!")
             return render_template('appt.html',msg=e)
         if len(data)==0:
-            flash("Try again")
+            flash("All appointments")
+            cur.execute(" SELECT * FROM docapt WHERE Doc_id = %s", [session['Doc_id']])
+            data = cur.fetchall()
+            
         return render_template('appt.html', data=data)
         cur.close()
     return render_template('appt.html')
@@ -435,9 +426,7 @@ def uappt():
         try:
             cur.execute("INSERT INTO docapt(Doc_id,Pat_id,date,time) VALUES(%s , %s ,%s, %s )" ,(Doc_id,session['Pat_id'],date, time))
             cur.execute(" SELECT * FROM docapt WHERE date = %s", [date])
-            data = cur.fetchall()
-            mysql.connection.commit()
-            
+            data = cur.fetchall()    
         # to handle exceptions
         except Exception  as e:
             flash("Try again!!")
