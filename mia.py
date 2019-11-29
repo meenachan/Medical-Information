@@ -209,10 +209,16 @@ def logenter():
 
 @app.route('/signup/home')
 def home():
+    result = ""
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('home.html', name=session['Name'])
+        
+        cursor = mysql.connection.cursor()
+        args = (session['Doc_id'],0);
+        cursor.callproc("noofpatients",args)
+        result = cursor.fetchall();
+        return render_template('home.html', name=session['Name'],result=result)
     # User is not loggedin redirect to login page
     return redirect(url_for('signup'))
 
@@ -315,7 +321,7 @@ def appt():
         date = request.form['date']
         cur = mysql.connection.cursor()
         try:
-            cur.execute(" SELECT * FROM docapt WHERE date = %s", [date])
+            cur.execute(" SELECT * FROM Appointment WHERE date = %s", [date])
             data = cur.fetchall()
             mysql.connection.commit()
         # to handle exceptions
@@ -324,7 +330,7 @@ def appt():
             return render_template('appt.html',msg=e)
         if len(data)==0:
             flash("All appointments")
-            cur.execute(" SELECT * FROM docapt WHERE Doc_id = %s", [session['Doc_id']])
+            cur.execute(" SELECT * FROM Appointment  WHERE doctorID = %s", [session['Doc_id']])
             data = cur.fetchall()
             
         return render_template('appt.html', data=data)
@@ -421,18 +427,21 @@ def uappt():
         #search by date
         Doc_id = request.form['Doc_id']
         date = request.form['date']
-        time = request.form['time']
+        starttime = request.form['starttime']
+        endtime = request.form['endtime']
         cur = mysql.connection.cursor()
         try:
-            cur.execute("INSERT INTO docapt(Doc_id,Pat_id,date,time) VALUES(%s , %s ,%s, %s )" ,(Doc_id,session['Pat_id'],date, time))
-            cur.execute(" SELECT * FROM docapt WHERE date = %s", [date])
-            data = cur.fetchall()    
+            cur.execute("INSERT INTO Appointment (doctorID,date,startTime,endTime,Pat_id) VALUES(%s , %s ,%s, %s, %s )" ,(Doc_id,date,starttime,endtime,session['Pat_id'],))
+            cur.execute(" SELECT * FROM Appointment WHERE date = %s", [date])
+            data = cur.fetchall()
+            mysql.connection.commit()    
         # to handle exceptions
         except Exception  as e:
-            flash("Try again!!")
+            flash(e)
             return render_template('uappt.html',msg=e)
        
         return render_template('uappt.html', data=data)
+        
         cur.close()
     return render_template('uappt.html')
 #-------------------------------------------------------------------------------------------------------
