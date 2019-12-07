@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for, flash 
-from flask_mysqldb import MySQL 
+from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import json
 
@@ -209,16 +209,31 @@ def logenter():
 
 @app.route('/signup/home')
 def home():
-    result = ""
+    data= ""
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
-        
-        cursor = mysql.connection.cursor()
-        args = (session['Doc_id'],0);
-        cursor.callproc("noofpatients",args)
-        result = cursor.fetchall();
-        return render_template('home.html', name=session['Name'],result=result)
+        cur = mysql.connection.cursor()
+        nocount = 0
+        args =[session['Doc_id'],0]
+        try:
+            cursor = mysql.connection.cursor()
+            args = ['123',0]
+            statement = ("CALL noofpatients(%s,@nocount);" %(session['Doc_id']))
+            cursor.execute(statement)
+            # cursor.callproc("noofpatients",args)
+            result = cursor.fetchall()
+
+            mysql.connection.commit()
+            # cursor.close() 
+            # cursor = mysql.connection.cursor()
+            cursor.execute('SELECT @nocount')
+            result = cursor.fetchall()
+            mysql.connection.commit()
+            
+        except Exception as e:
+            flash(e)
+        return render_template('home.html', name=session['Name'], result = result)
     # User is not loggedin redirect to login page
     return redirect(url_for('signup'))
 
